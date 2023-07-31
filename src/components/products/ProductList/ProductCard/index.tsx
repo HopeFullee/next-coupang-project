@@ -1,13 +1,20 @@
-type Props = {
-  name: string;
-  stock: number;
-  price: number;
-};
+import { Product } from "@/types/Product";
+import Image from "next/image";
 
-const ProductCard = ({ name, stock, price }: Props) => {
+interface Props extends Product {
+  calcValue: number;
+}
+
+const ProductCard = ({ name, stock, price, thumbnail, calcValue }: Props) => {
   return (
     <li className="p-20 leading-relaxed rounded-md bg-white/20">
       <h6 className="font-bold text-18 md:text-20">{name}</h6>
+      <Image
+        src={thumbnail}
+        alt="product-image"
+        className="py-15"
+        priority={true}
+      />
       <p className="font-semibold md:text-18">
         stock: {stock.toLocaleString()}
       </p>
